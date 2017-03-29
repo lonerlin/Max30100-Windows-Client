@@ -32,8 +32,14 @@ namespace POM
         private const int AW_SLIDE = 0x40000;//应用滑动类型动画结果,默认为迁移转变动画类型,当应用AW_CENTER标记时,这个标记就被忽视
         private const int AW_BLEND = 0x80000;//应用淡入淡出结果
 
-       
+       public delegate void ShowInfo(string p,string s );
 
+       public void ShowText(string p, string s)
+       {
+           this.lPulse.Text = p;
+           this.lSpo.Text = s;
+       }
+       ShowInfo sInfo;
         public Popups()
         {
             InitializeComponent();
@@ -42,10 +48,54 @@ namespace POM
             this.nIcon.MouseClick += nIcon_MouseClick;
             this.FormClosing+=Popups_FormClosing;
            // this.Resize += Popups_Resize;
+            Port.Open();
+            Port.DataReceived += Port_DataReceived;
+            sInfo = new ShowInfo(ShowText);
+        }
+        string[] arg = new string[2];
+        void Port_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            string value = ReadSerialData();
+            String head = value.Substring(0, 2);
+            String info = value.Substring(2);
+           
+            if (head.Equals("H:"))
+            {
+                
+                arg[0]=Math.Round(decimal.Parse(info)).ToString();
+                this.Invoke(sInfo, arg);
+            }
             
+            else if(head.Equals("O:")) 
+            {
+                arg[1] = info;
+                this.Invoke(sInfo,arg);
+            }
         }
 
-        
+        /// <summary>
+        /// 从串口读取数据并转换为字符串形式
+        /// </summary>
+        /// <returns></returns>
+        private string ReadSerialData()
+        {
+            string value = "";
+            try
+            {
+                if (Port != null && Port.BytesToRead > 0)
+                {
+                   // value = Port.ReadExisting();
+                    value = Port.ReadLine();
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("读取串口数据发生错误：" + ex.Message, "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            return value;
+        }
 
         
 

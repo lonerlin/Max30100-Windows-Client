@@ -8,11 +8,15 @@ using System.IO.Ports;
 
 namespace POM
 {
-    class Serial:SerialPort
+    public class Serial:SerialPort
     {
-        Serial()
+        Serial(string portName)
         {
             this.PortName = "Com7";
+            this.BaudRate = 115200;
+            this.Open();
         }
+
+
     }
 }
