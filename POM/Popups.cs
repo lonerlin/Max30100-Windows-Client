@@ -34,10 +34,16 @@ namespace POM
 
        public delegate void ShowInfo(string p,string s );
 
+       Font font;
        public void ShowText(string p, string s)
        {
-           this.lPulse.Text = p;
-           this.lSpo.Text = s;
+           pictureBox1.Image = null;
+           pictureBox1.Refresh();
+           Graphics g = pictureBox1.CreateGraphics();
+
+           g.DrawString(p, font, new SolidBrush(Color.FromArgb(1, 177, 242)), 50, 75);
+           
+           g.DrawString(s, font, new SolidBrush(Color.FromArgb(1, 177, 242)), 75, 140);
        }
        ShowInfo sInfo;
         public Popups()
@@ -134,10 +140,15 @@ namespace POM
         {
             this.ShowInTaskbar = false;
             
-            int x = Screen.PrimaryScreen.WorkingArea.Right - this.Width;
-            int y = Screen.PrimaryScreen.WorkingArea.Bottom - this.Height;
+            int x = Screen.PrimaryScreen.WorkingArea.Right - this.Width+20;
+            int y = Screen.PrimaryScreen.WorkingArea.Bottom - this.Height+30;
             this.Location = new Point(x, y);//设置窗体在屏幕右下角显示
             this.TopMost = true;
+           
+           this.TransparencyKey = Color.White;             //设置默认透明色
+            this.BackColor = this.TransparencyKey;          //设置当前窗体的背景色为透明
+            this.FormBorderStyle = FormBorderStyle.None;    //隐藏窗体边框
+            font = new Font("幼圆", 32, FontStyle.Bold); 
             AnimateWindow(this.Handle, 1000, AW_SLIDE | AW_ACTIVE | AW_VER_NEGATIVE);
            
         }
