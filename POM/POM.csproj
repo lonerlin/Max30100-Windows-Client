@@ -95,6 +95,12 @@
   <ItemGroup>
     <None Include="Resources\background3.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StatusChart\StatusChart.csproj">
+      <Project>{18C24125-9CDB-4B4D-97E9-B56198D3A2F7}</Project>
+      <Name>StatusChart</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

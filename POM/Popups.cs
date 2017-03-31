@@ -54,7 +54,7 @@ namespace POM
             this.nIcon.MouseClick += nIcon_MouseClick;
             this.FormClosing+=Popups_FormClosing;
            // this.Resize += Popups_Resize;
-            Port.Open();
+            
             Port.DataReceived += Port_DataReceived;
             sInfo = new ShowInfo(ShowText);
         }
@@ -150,6 +150,12 @@ namespace POM
             this.FormBorderStyle = FormBorderStyle.None;    //隐藏窗体边框
             font = new Font("幼圆", 32, FontStyle.Bold); 
             AnimateWindow(this.Handle, 1000, AW_SLIDE | AW_ACTIVE | AW_VER_NEGATIVE);
+
+
+            Port.Open();
+            Wave wav = new Wave();
+            wav.Port = Port;
+            wav.Show();
            
         }
 
