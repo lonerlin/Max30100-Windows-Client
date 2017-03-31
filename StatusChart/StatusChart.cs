@@ -68,9 +68,18 @@ namespace UI
             //画 水平 方向
             div = (float)h / (float)gridHeight;
             pos = 0F;
+           
             for (int i = 0; i < (int)div; i++)
             {
                 pos += gridHeight;
+                if (i == 7)
+                {
+                    penGrid.Width =3;
+                }
+                else
+                {
+                    penGrid.Width = 1;
+                }
                 g.DrawLine(penGrid, 0, pos, w, pos);
             }
         }
@@ -79,7 +88,7 @@ namespace UI
         private void DrawChart(ref Graphics g, Pen p, ref int[] val)
         {
             //从 0 到 w 绘制
-            int len = w;
+            int len = w-50;
             //根据绘制方式
             if (chartMode == StatusChart.ChartMode.Histogram)
             {
@@ -97,7 +106,10 @@ namespace UI
                     g.DrawLine(p, i, h - val[i], i + 1, h - val[i + 1]);
                 }
                 len++;
+                
                 g.DrawLine(p, len - 1, h - val[len - 2], len, h - val[len - 1]);
+                SolidBrush s = new SolidBrush(Color.Lime);
+                g.FillEllipse(s, len, h - val[len - 1], 5, 5);
             }
         }
 
@@ -147,7 +159,7 @@ namespace UI
             //更新图形（整体左移）
             //必须在这里而不能在画图的同时移动，
             //若在画图中移动，则当画面被遮挡（OnPaint）事件不发生时无法更新
-            int len = w;
+            int len = w-50;
             for (int i = 0; i < len; i++)
             {
                 //判断数组越界

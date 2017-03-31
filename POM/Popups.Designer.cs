@@ -38,6 +38,8 @@
             this.mSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.mExit = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.cOM1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cOM2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -62,31 +64,36 @@
             this.mSetting,
             this.mExit});
             this.menu.Name = "contextMenuStrip1";
-            this.menu.Size = new System.Drawing.Size(131, 92);
+            this.menu.Size = new System.Drawing.Size(153, 114);
             // 
             // mPopups
             // 
             this.mPopups.Name = "mPopups";
-            this.mPopups.Size = new System.Drawing.Size(130, 22);
+            this.mPopups.Size = new System.Drawing.Size(152, 22);
             this.mPopups.Text = "显示小窗";
             this.mPopups.Click += new System.EventHandler(this.mPopups_Click);
             // 
             // mMain
             // 
             this.mMain.Name = "mMain";
-            this.mMain.Size = new System.Drawing.Size(130, 22);
-            this.mMain.Text = "显示主窗口";
+            this.mMain.Size = new System.Drawing.Size(152, 22);
+            this.mMain.Text = "显示脉搏波形";
+            this.mMain.Click += new System.EventHandler(this.mMain_Click);
             // 
             // mSetting
             // 
+            this.mSetting.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cOM1ToolStripMenuItem,
+            this.cOM2ToolStripMenuItem});
             this.mSetting.Name = "mSetting";
-            this.mSetting.Size = new System.Drawing.Size(130, 22);
-            this.mSetting.Text = "设置";
+            this.mSetting.Size = new System.Drawing.Size(152, 22);
+            this.mSetting.Text = "选择端口";
+            this.mSetting.Click += new System.EventHandler(this.mSetting_Click);
             // 
             // mExit
             // 
             this.mExit.Name = "mExit";
-            this.mExit.Size = new System.Drawing.Size(130, 22);
+            this.mExit.Size = new System.Drawing.Size(152, 22);
             this.mExit.Text = "退出";
             this.mExit.Click += new System.EventHandler(this.mExit_Click);
             // 
@@ -99,6 +106,19 @@
             this.pictureBox1.Size = new System.Drawing.Size(178, 261);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
+            // 
+            // cOM1ToolStripMenuItem
+            // 
+            this.cOM1ToolStripMenuItem.Name = "cOM1ToolStripMenuItem";
+            this.cOM1ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cOM1ToolStripMenuItem.Text = "COM1";
+            this.cOM1ToolStripMenuItem.Click += new System.EventHandler(this.cOM1ToolStripMenuItem_Click);
+            // 
+            // cOM2ToolStripMenuItem
+            // 
+            this.cOM2ToolStripMenuItem.Name = "cOM2ToolStripMenuItem";
+            this.cOM2ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cOM2ToolStripMenuItem.Text = "COM2";
             // 
             // Popups
             // 
@@ -130,6 +150,8 @@
         private System.Windows.Forms.ToolStripMenuItem mExit;
         private System.Windows.Forms.ToolStripMenuItem mSetting;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolStripMenuItem cOM1ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cOM2ToolStripMenuItem;
     }
 }
 

@@ -35,6 +35,7 @@ namespace POM
        public delegate void ShowInfo(string p,string s );
 
        Font font;
+       Wave wav;
        public void ShowText(string p, string s)
        {
            pictureBox1.Image = null;
@@ -77,6 +78,20 @@ namespace POM
                 arg[1] = info;
                 this.Invoke(sInfo,arg);
             }
+            else if (head.Equals("R:"))
+            {
+                if (wav != null)
+                { 
+                    try
+                    {
+                        wav.UpdateWave(float.Parse(info.Split(',')[0]));
+                    }
+                    catch
+                    {
+                        wav.UpdateWave(0);
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -111,7 +126,7 @@ namespace POM
             {
                 this.Visible = true;
                 this.WindowState = FormWindowState.Normal;
-                this.nIcon.Visible = false;
+               // this.nIcon.Visible = false;
             }
             else
             { 
@@ -153,10 +168,10 @@ namespace POM
 
 
             Port.Open();
-            Wave wav = new Wave();
-            wav.Port = Port;
-            wav.Show();
-           
+            if (wav == null)
+            {
+               
+            }
         }
 
         void Popups_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
@@ -183,6 +198,36 @@ namespace POM
             this.Location = new Point(x, y);//设置窗体在屏幕右下角显示
             this.TopMost = true;
             AnimateWindow(this.Handle, 1000, AW_SLIDE | AW_ACTIVE | AW_VER_NEGATIVE);
+        }
+
+        private void mSetting_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cOM1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mMain_Click(object sender, EventArgs e)
+        {
+            if (wav == null)
+            {
+                wav = new Wave();
+                wav.Show();
+                wav.FormClosed += wav_FormClosed;
+            }
+            else
+            {
+                wav.Show();
+            }
+        }
+
+        void wav_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            wav.Dispose();
+            wav = null;
         }
 
     }
