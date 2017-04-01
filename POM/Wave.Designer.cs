@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Wave));
             this.statusChart1 = new UI.StatusChart();
             this.SuspendLayout();
             // 
@@ -52,6 +53,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 541);
             this.Controls.Add(this.statusChart1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Wave";
             this.Text = "脉搏波形图";
@@ -62,7 +64,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+       // private System.Windows.Forms.PictureBox pictureBox1;
         private UI.StatusChart statusChart1;
     }
 }

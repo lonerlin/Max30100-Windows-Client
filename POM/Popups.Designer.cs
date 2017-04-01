@@ -94,13 +94,14 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = global::POM.Properties.Resources.background3;
-            this.pictureBox1.Image = global::POM.Properties.Resources.background3;
+            this.pictureBox1.BackgroundImage = global::POM.Properties.Resources.backgroundNew;
+            this.pictureBox1.Image = global::POM.Properties.Resources.backgroundNew;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(178, 261);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
+           
             // 
             // Popups
             // 
