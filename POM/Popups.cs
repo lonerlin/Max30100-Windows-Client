@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.IO.Ports;
 using System.Runtime.InteropServices;
  
 
@@ -118,7 +118,27 @@ namespace POM
             return value;
         }
 
-        
+        void OpenPort()
+        {
+            string pName = AppConfig.GetValue("SerialPortName");
+            if (!pName.Equals(""))
+            {
+                Port.PortName = pName;
+                try
+                {
+                    Port.Open();
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("串口打开失败，请检查设备是否接入，串口选择是否正确。 /n/r ErrorMessage:" + e.Message);
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("请先选择设备所在的端口。" );
+            }
+        }
 
         void nIcon_MouseClick(object sender, MouseEventArgs e)
         {
@@ -167,11 +187,8 @@ namespace POM
             AnimateWindow(this.Handle, 1000, AW_SLIDE | AW_ACTIVE | AW_VER_NEGATIVE);
 
 
-            Port.Open();
-            if (wav == null)
-            {
-               
-            }
+            OpenPort();
+            AddSerialItem();
         }
 
         void Popups_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
@@ -209,6 +226,71 @@ namespace POM
         {
 
         }
+
+
+        private void AddSerialItem()
+
+        {
+            mSetting.CheckOnClick = true;
+            
+           
+            foreach (var pName in SerialPort.GetPortNames())
+            {
+                if (pName.Equals(AppConfig.GetValue("SerialPortName")))
+                {
+                    AddContextMenu(pName, mSetting.DropDownItems, new EventHandler(MenuClicked),true);
+                }else
+                { 
+                
+                    AddContextMenu(pName, mSetting.DropDownItems, new EventHandler(MenuClicked),false);
+                }
+            }
+        }
+        void MenuClicked(object sender, EventArgs e)
+        {
+
+            foreach (ToolStripMenuItem tsm in mSetting.DropDownItems)
+            {
+                tsm.Checked = false;
+            }
+            ToolStripMenuItem sMenu = (ToolStripMenuItem)sender;
+            sMenu.Checked = true;
+            AppConfig.SetValue("SerialPortName", sMenu.Text);
+            OpenPort();
+
+        }
+        /// <summary>
+        /// 添加子菜单
+        /// </summary>
+        /// <param name="text">要显示的文字，如果为 - 则显示为分割线</param>
+        /// <param name="cms">要添加到的子菜单集合</param>
+        /// <param name="callback">点击时触发的事件</param>
+        /// <returns>生成的子菜单，如果为分隔条则返回null</returns>
+
+        ToolStripMenuItem AddContextMenu(string text, ToolStripItemCollection cms, EventHandler callback,bool Checked)
+        {
+            if (text == "-")
+            {
+                ToolStripSeparator tsp = new ToolStripSeparator();
+                cms.Add(tsp);
+                return null;
+            }
+            else if (!string.IsNullOrEmpty(text))
+            {
+                ToolStripMenuItem tsmi = new ToolStripMenuItem(text);
+                tsmi.Tag = text + "TAG";
+                if (callback != null) tsmi.Click += callback;
+                cms.Add(tsmi);
+                tsmi.Checked = Checked;
+                return tsmi;
+            }
+
+            return null;
+        }
+
+
+
+
 
         private void mMain_Click(object sender, EventArgs e)
         {
