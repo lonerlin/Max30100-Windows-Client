@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POM", "POM\POM.csproj", "{F7C64424-3B4B-482E-A94C-C348173344AB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatusChart", "StatusChart\StatusChart.csproj", "{18C24125-9CDB-4B4D-97E9-B56198D3A2F7}"
-EndProject
-Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "POMSetup", "POMSetup\POMSetup.isproj", "{2499BDCD-68EF-411A-BD42-7CE00B56A580}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,16 +36,6 @@ Global
 		{18C24125-9CDB-4B4D-97E9-B56198D3A2F7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{18C24125-9CDB-4B4D-97E9-B56198D3A2F7}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{18C24125-9CDB-4B4D-97E9-B56198D3A2F7}.SingleImage|Any CPU.Build.0 = Release|Any CPU
-		{2499BDCD-68EF-411A-BD42-7CE00B56A580}.CD_ROM|Any CPU.ActiveCfg = CD_ROM
-		{2499BDCD-68EF-411A-BD42-7CE00B56A580}.CD_ROM|Any CPU.Build.0 = CD_ROM
-		{2499BDCD-68EF-411A-BD42-7CE00B56A580}.Debug|Any CPU.ActiveCfg = DVD-5
-		{2499BDCD-68EF-411A-BD42-7CE00B56A580}.Debug|Any CPU.Build.0 = DVD-5
-		{2499BDCD-68EF-411A-BD42-7CE00B56A580}.DVD-5|Any CPU.ActiveCfg = DVD-5
-		{2499BDCD-68EF-411A-BD42-7CE00B56A580}.DVD-5|Any CPU.Build.0 = DVD-5
-		{2499BDCD-68EF-411A-BD42-7CE00B56A580}.Release|Any CPU.ActiveCfg = SingleImage
-		{2499BDCD-68EF-411A-BD42-7CE00B56A580}.Release|Any CPU.Build.0 = SingleImage
-		{2499BDCD-68EF-411A-BD42-7CE00B56A580}.SingleImage|Any CPU.ActiveCfg = SingleImage
-		{2499BDCD-68EF-411A-BD42-7CE00B56A580}.SingleImage|Any CPU.Build.0 = SingleImage
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

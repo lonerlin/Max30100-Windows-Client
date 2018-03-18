@@ -399,6 +399,21 @@ namespace UI
         #endregion
 
         #region ** 公共方法 **
+        
+        
+        public Bitmap saveScreen()
+        {
+
+            Bitmap bit = new Bitmap(this.Width, this.Height);
+            Graphics g = Graphics.FromImage(bit);
+            g.CompositingQuality = CompositingQuality.HighQuality;
+            g.CopyFromScreen(this.FindForm().Location.X+10, this.FindForm().Location.Y+30, 0, 0, new Size(this.Width, this.Height));
+            return bit;
+        }
+
+        
+        
+        
         /// <summary>
         /// 启动计时器更新。返回执行情况。
         /// </summary>

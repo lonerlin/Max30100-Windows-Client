@@ -26,7 +26,8 @@ namespace POM
        Wave wav;
        ShowInfo sInfo;
        string[] arg = new string[2];
-
+       StateAnalysis sAnalysis;
+       
        //具体显示 显示脉搏，血氧值 函数
        public void ShowText(string p, string s)
        {
@@ -65,7 +66,7 @@ namespace POM
             this.BackColor = this.TransparencyKey;          //设置当前窗体的背景色为透明
             this.FormBorderStyle = FormBorderStyle.None;    //隐藏窗体边框
             font = new Font("幼圆", 32, FontStyle.Bold);
-
+            sAnalysis = new StateAnalysis();
 
 
             OpenPort();
@@ -108,6 +109,7 @@ namespace POM
             String head = value.Substring(0, 2);
             String info = value.Substring(2);
            
+            
             if (head.Equals("H:"))
             {
                 
@@ -258,7 +260,9 @@ namespace POM
 
         }
 
-
+        /// <summary>
+        /// 根据串口列表，添加右键串口菜单
+        /// </summary>
         private void AddSerialItem()
 
         {

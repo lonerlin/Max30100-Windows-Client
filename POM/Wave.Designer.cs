@@ -30,10 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Wave));
             this.statusChart1 = new UI.StatusChart();
+            this.saveWaveFile = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // statusChart1
             // 
+            this.statusChart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.statusChart1.BackColor = System.Drawing.Color.Black;
             this.statusChart1.Enabled = false;
             this.statusChart1.GridHeight = 50;
@@ -46,6 +50,10 @@
             this.statusChart1.Range = 500;
             this.statusChart1.Size = new System.Drawing.Size(1008, 540);
             this.statusChart1.TabIndex = 0;
+            // 
+            // saveWaveFile
+            // 
+            this.saveWaveFile.Filter = "位图|*.bmp";
             // 
             // Wave
             // 
@@ -66,5 +74,6 @@
 
        // private System.Windows.Forms.PictureBox pictureBox1;
         private UI.StatusChart statusChart1;
+        private System.Windows.Forms.SaveFileDialog saveWaveFile;
     }
 }

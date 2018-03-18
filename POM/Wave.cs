@@ -16,6 +16,9 @@ namespace POM
         public SerialPort Port { get; set; }
         public delegate void DrawWave(int value);
 
+        Bitmap bp;
+
+        
         public void draw(int value)
         {
             this.statusChart1.Value = value;
@@ -33,7 +36,19 @@ namespace POM
            
                 
                 dWave = new DrawWave(this.draw);
-            
+                statusChart1.DoubleClick += statusChart1_DoubleClick;
+                saveWaveFile.FileOk += saveWaveFile_FileOk;
+        }
+
+        void saveWaveFile_FileOk(object sender, CancelEventArgs e)
+        {
+            bp.Save(saveWaveFile.FileName);
+        }
+
+        void statusChart1_DoubleClick(object sender, EventArgs e)
+        {
+            bp= statusChart1.saveScreen();
+           saveWaveFile.ShowDialog();
         }
 
         public void UpdateWave(float value)
