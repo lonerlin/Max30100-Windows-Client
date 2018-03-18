@@ -61,6 +61,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="StateAnalysis.cs" />
+    <Compile Include="SystemPath.cs" />
     <Compile Include="Wave.cs">
       <SubType>Form</SubType>
     </Compile>

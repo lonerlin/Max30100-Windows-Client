@@ -34,8 +34,11 @@ namespace POM
            pictureBox1.Image = null;
            pictureBox1.Refresh();
            Graphics g = pictureBox1.CreateGraphics();
-
-           sAnalysis.SetData("59", s);
+           
+           //警报测试
+           //s = "89";
+          // p = "59";
+           sAnalysis.SetData(p, s);
            //Console.WriteLine("sAnalysis.PulseColor" + sAnalysis.PulseColor);
            g.DrawString(p, font, new SolidBrush(sAnalysis.PulseColor), 50, 75);
            

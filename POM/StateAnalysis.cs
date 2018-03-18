@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Timers;
 using System.Drawing ;
-
+using System.Runtime.InteropServices;
 namespace POM
 {
     class StateAnalysis
@@ -14,6 +14,12 @@ namespace POM
         static int YellowPulseTop = 90, RedPulseTop = 110;
         int yellowPulseTime=0, redPulseTime=0, yellowOxygenTime=0, redOxygenTime=0;
         Color pulseColor = Color.FromArgb(1, 177, 242), oxygenColor = Color.FromArgb(1, 177, 242);
+
+        [DllImport("kernel32.dll")]
+        private static extern int Beep(int dwFreq, int dwDuration);
+        int freq = 0X7FF;
+        int duration = 200;
+
         public StateAnalysis()
         {
             //设置定时间隔(毫秒为单位)
@@ -22,8 +28,8 @@ namespace POM
             redOxygenTimer = new Timer(interval);
             yellowOxygenTimer = new Timer(interval);
             yellowPulseTimer=new Timer(interval);
-            yellowColorTimer = new Timer(500);
-            redColorTimer = new Timer(500);
+            yellowColorTimer = new Timer(100);
+            redColorTimer = new Timer(100);
              //绑定Elapsed事件
             redPulseTimer.Elapsed += redPulseTimer_Elapsed;
             redOxygenTimer.Elapsed +=redOxygenTimer_Elapsed;
@@ -43,6 +49,7 @@ namespace POM
             {
                 if (oxygenColor == Color.Red) oxygenColor = Color.FromArgb(1, 177, 242);
                 else oxygenColor = Color.Red;
+                Beep(freq,duration);
                 
             }
             if(redPulseTime>5)
@@ -50,6 +57,7 @@ namespace POM
                 Console.WriteLine(pulseColor.ToString());
                 if (pulseColor == Color.Red) pulseColor = Color.FromArgb(1, 177, 242);
                 else pulseColor = Color.Red;
+                Beep(freq, duration);
             }
         }
 
@@ -58,15 +66,33 @@ namespace POM
           
             if(yellowOxygenTime>5)
             {
-                if (oxygenColor == Color.Yellow) oxygenColor = Color.FromArgb(1, 177, 242);
-                else oxygenColor = Color.Yellow;
+                if (oxygenColor == Color.Yellow)
+                {
+                    oxygenColor = Color.FromArgb(1, 177, 242);
+                    Beep(freq, duration);
+                }
+                else 
+                {
+                    oxygenColor = Color.Yellow; 
+                }
                 Console.WriteLine("yellowOxygenTime:" + yellowOxygenTime);
+                
             }
             if(yellowPulseTime>5)
             {
-                if (pulseColor == Color.Yellow) pulseColor = Color.FromArgb(1, 177, 242);
-                else pulseColor = Color.Yellow;
+                if (pulseColor == Color.Yellow)
+                    
+                {
+                    Console.WriteLine("TRUE");
+                    pulseColor = Color.FromArgb(1, 177, 242);
+                    Beep(freq, duration);
+                }
+                else {
+                    Console.WriteLine("FALSE");
+                    pulseColor = Color.Yellow;
+                }
                 Console.WriteLine("yellowPulseTime:" + yellowPulseTime);
+               
             }
             
 
