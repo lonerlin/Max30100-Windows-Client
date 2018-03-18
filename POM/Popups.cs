@@ -35,9 +35,11 @@ namespace POM
            pictureBox1.Refresh();
            Graphics g = pictureBox1.CreateGraphics();
 
-           g.DrawString(p, font, new SolidBrush(Color.FromArgb(1, 177, 242)), 50, 75);
+           sAnalysis.SetData("59", s);
+           //Console.WriteLine("sAnalysis.PulseColor" + sAnalysis.PulseColor);
+           g.DrawString(p, font, new SolidBrush(sAnalysis.PulseColor), 50, 75);
            
-           g.DrawString(s, font, new SolidBrush(Color.FromArgb(1, 177, 242)), 75, 140);
+           g.DrawString(s, font, new SolidBrush(sAnalysis.OxygenColor), 75, 140);
        }
        
         public Popups()
@@ -166,7 +168,8 @@ namespace POM
         /// </summary>
         void OpenPort()
         {
-            string pName = AppConfig.GetValue("SerialPortName");
+            //string pName = AppConfig.GetValue("SerialPortName");
+            string pName = "COM4";
             if (!pName.Equals(""))
             {
                 if (Port.IsOpen)
